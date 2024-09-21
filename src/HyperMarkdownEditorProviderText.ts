@@ -73,7 +73,7 @@ export class HyperMarkdownEditorProviderText implements CustomTextEditorProvider
         var hypermdScriptUri = vscode.Uri.joinPath(this.extensionUri, 'out/hypermd_bundle.js')
         var turndownScriptUri = vscode.Uri.joinPath(this.extensionUri, 'out/turndown_bundle.js')
         var codemirrorModesScriptUri = vscode.Uri.joinPath(this.extensionUri, 'out/codemirror_modes_bundle.js')
-        var webviewScriptUri = vscode.Uri.joinPath(this.extensionUri, 'src/webview/index.js')
+        var webviewScriptUri = vscode.Uri.joinPath(this.extensionUri, 'out/webview_bundle.js')
 
         hypermdScriptUri = webview.asWebviewUri(hypermdScriptUri);
         webviewScriptUri = webview.asWebviewUri(webviewScriptUri);

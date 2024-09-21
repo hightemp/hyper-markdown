@@ -59,6 +59,7 @@
     "test": "vscode-test",
     "pack": "vsce package",
     "publish": "vsce publish",
+    "build_webview": "webpack --config webpack.webview.config.js",
     "build_hypermd": "webpack --config webpack.hypermd.config.js",
     "build_turndown": "webpack --config webpack.turndown.config.js",
     "build_codemirror_modes": "webpack --config webpack.codemirror_modes.config.js"
