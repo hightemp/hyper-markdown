@@ -57,6 +57,8 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
     "test": "vscode-test",
+    "pack": "vsce package",
+    "publish": "vsce publish",
     "build_hypermd": "webpack --config webpack.hypermd.config.js",
     "build_turndown": "webpack --config webpack.turndown.config.js",
     "build_codemirror_modes": "webpack --config webpack.codemirror_modes.config.js"
