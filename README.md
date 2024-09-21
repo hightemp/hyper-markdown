@@ -1,7 +1,7 @@
 # hyper-markdown
 
 This simple extension uses the hyper-md editor to display markdown. Its main feature is real-time content preview.
-Hyper-md used in Obsidian.
+`hyper-md` used in Obsidian.
 
 ![](./screenshots/screenshot_01.png)
 
