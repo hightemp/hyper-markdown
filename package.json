@@ -7,7 +7,7 @@
   "engines": {
     "vscode": "^1.93.0"
   },
-  
+
 	"author": {
 		"email": "hightemp.unknown@gmail.com",
 		"name": "Anton"
@@ -61,7 +61,8 @@
     "lint": "eslint src",
     "test": "vscode-test",
     "build_hypermd": "webpack --config webpack.hypermd.config.js",
-    "build_turndown": "webpack --config webpack.turndown.config.js"
+    "build_turndown": "webpack --config webpack.turndown.config.js",
+    "build_codemirror_modes": "webpack --config webpack.codemirror_modes.config.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.25.4",

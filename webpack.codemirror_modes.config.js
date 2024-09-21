@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/hypermd/index.js',
+  entry: './src/codemirror/modes.min.js',
   output: {
-    filename: 'hypermd_bundle.js',
+    filename: 'codemirror_modes_bundle.js',
     path: path.resolve(__dirname, 'out'),
   },
   mode: 'production',
@@ -19,13 +19,9 @@ module.exports = {
           }
         }
       },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
     ]
   },
   resolve: {
-    extensions: ['.js', '.css']
+    extensions: ['.js']
   }
 };

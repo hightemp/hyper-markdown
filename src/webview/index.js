@@ -61,6 +61,11 @@ editor.on('change', () => {
     sendToVsCode({type: 'update', body: text})
 });
 
+editor.on('load', (cm) => {
+    console.log('load');
+    loadCodeMirrorModes(cm)
+})
+
 window.addEventListener('resize', () => {
     editor.setSize(null, '100%');
 });

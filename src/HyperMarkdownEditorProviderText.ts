@@ -72,11 +72,13 @@ export class HyperMarkdownEditorProviderText implements CustomTextEditorProvider
     private getHtmlForWebview(webview: vscode.Webview, document: vscode.TextDocument): string {
         var hypermdScriptUri = vscode.Uri.joinPath(this.extensionUri, 'out/hypermd_bundle.js')
         var turndownScriptUri = vscode.Uri.joinPath(this.extensionUri, 'out/turndown_bundle.js')
+        var codemirrorModesScriptUri = vscode.Uri.joinPath(this.extensionUri, 'out/codemirror_modes_bundle.js')
         var webviewScriptUri = vscode.Uri.joinPath(this.extensionUri, 'src/webview/index.js')
 
         hypermdScriptUri = webview.asWebviewUri(hypermdScriptUri);
         webviewScriptUri = webview.asWebviewUri(webviewScriptUri);
         turndownScriptUri = webview.asWebviewUri(turndownScriptUri);
+        codemirrorModesScriptUri = webview.asWebviewUri(codemirrorModesScriptUri);
 
         const nonce = this.getNonce();
 
@@ -100,6 +102,8 @@ export class HyperMarkdownEditorProviderText implements CustomTextEditorProvider
                 <textarea id="editor" style="width:100%;height:100%">${document.getText()}</textarea>
                 <script nonce="${nonce}" src="${hypermdScriptUri}"></script>
                 <script nonce="${nonce}" src="${turndownScriptUri}"></script>
+                <script nonce="${nonce}" src="${codemirrorModesScriptUri}"></script>
+
                 <script nonce="${nonce}" src="${webviewScriptUri}"></script>
             </body>
             </html>

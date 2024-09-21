@@ -6,7 +6,7 @@ module.exports = {
     filename: 'turndown_bundle.js',
     path: path.resolve(__dirname, 'out'),
   },
-  mode: 'production', // или 'development' для разработки
+  mode: 'production',
   module: {
     rules: [
       {
