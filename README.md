@@ -8,6 +8,6 @@ This simple extension uses the hyper-md editor to display markdown. Its main fea
 - [x] markdown preview
 - [x] сonversion to markdown from HTML pasted from the clipboard
 
-![](./screenshots/screenshot_01.png)
+![](./docs/screenshot_01.png)
 
-![](./screenshots/screenshot_02.png)
+![](./docs/screenshot_02.png)

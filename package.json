@@ -1,11 +1,17 @@
 {
   "name": "hyper-markdown",
   "displayName": "hyper-markdown",
-  "description": "hypermd as markdown editor",
+  "description": "A markdown editor with preview",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.92.0"
   },
+	"author": {
+		"email": "hightemp.unknown@gmail.com",
+		"name": "Anton"
+	},
+	"readme": "./README.md",
+	"icon": "docs/logo.png",  
   "categories": [
     "Other"
   ],
