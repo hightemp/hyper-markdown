@@ -3,9 +3,11 @@
   "displayName": "hyper-markdown",
   "description": "A markdown editor with preview",
   "version": "0.0.1",
+
   "engines": {
-    "vscode": "^1.92.0"
+    "vscode": "^1.93.0"
   },
+  
 	"author": {
 		"email": "hightemp.unknown@gmail.com",
 		"name": "Anton"
@@ -15,10 +17,15 @@
   "categories": [
     "Other"
   ],
+  "repository": {
+		"url": "https://github.com/hightemp/hyper-markdown.git"
+	},
+	"browser": "./out/extension.js",
+  "main": "./out/extension.js",
+
   "activationEvents": [
     "onLanguage:markdown"
   ],
-  "main": "./out/extension.js",
   "contributes": {
     "languages": [
       {
