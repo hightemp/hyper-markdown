@@ -1,0 +1,1 @@
+window.HyperMD = require("hypermd");
