@@ -39,11 +39,6 @@
       }
     ],
     "commands": [
-      {
-        "command": "hediet.vscode-drawio.convert",
-        "title": "Convert To...",
-        "category": "Draw.io"
-      }
     ]
   },
   "scripts": {
