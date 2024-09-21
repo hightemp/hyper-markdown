@@ -32,7 +32,6 @@ export class HyperMarkdownEditorProviderText implements CustomTextEditorProvider
 
         webviewPanel.webview.html = this.getHtmlForWebview(webviewPanel.webview, document);
 
-        // Обработка изменений в документе
         const updateWebview = () => {
             this.log.appendLine('vscode -> frame: postMessage');
             webviewPanel.webview.postMessage({
@@ -53,14 +52,16 @@ export class HyperMarkdownEditorProviderText implements CustomTextEditorProvider
 
         // Обработка сообщений от webview
         webviewPanel.webview.onDidReceiveMessage(msg => {
-            this.log.appendLine(
-                "vscode <- frame: " + msg
-            );
+            console.log("vscode <- frame: ", msg)
 
-            var data: Message = JSON.parse(msg) as Message
+            // var data: Message = JSON.parse(msg) as Message
+            var data: Message = msg as Message
             switch (data.type) {
                 case 'update':
                     this.updateTextDocument(document, data.body);
+                    return;
+                case 'log':
+                    this.log.appendLine(data.body);
                     return;
             }
         });
@@ -70,10 +71,12 @@ export class HyperMarkdownEditorProviderText implements CustomTextEditorProvider
 
     private getHtmlForWebview(webview: vscode.Webview, document: vscode.TextDocument): string {
         var hypermdScriptUri = vscode.Uri.joinPath(this.extensionUri, 'out/hypermd_bundle.js')
+        var turndownScriptUri = vscode.Uri.joinPath(this.extensionUri, 'out/turndown_bundle.js')
         var webviewScriptUri = vscode.Uri.joinPath(this.extensionUri, 'src/webview/index.js')
 
         hypermdScriptUri = webview.asWebviewUri(hypermdScriptUri);
         webviewScriptUri = webview.asWebviewUri(webviewScriptUri);
+        turndownScriptUri = webview.asWebviewUri(turndownScriptUri);
 
         const nonce = this.getNonce();
 
@@ -96,6 +99,7 @@ export class HyperMarkdownEditorProviderText implements CustomTextEditorProvider
             <body>
                 <textarea id="editor" style="width:100%;height:100%">${document.getText()}</textarea>
                 <script nonce="${nonce}" src="${hypermdScriptUri}"></script>
+                <script nonce="${nonce}" src="${turndownScriptUri}"></script>
                 <script nonce="${nonce}" src="${webviewScriptUri}"></script>
             </body>
             </html>

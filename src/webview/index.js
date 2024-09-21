@@ -1,9 +1,13 @@
-const editor = HyperMD.fromTextArea(document.getElementById('editor'));
+console.log('webview index.js');
+
+const editorElement = document.getElementById('editor')
+const editor = HyperMD.fromTextArea(editorElement);
 
 const api = (window.VsCodeApi = acquireVsCodeApi());
 
 function sendToVsCode(msg) {
-    api.postMessage(JSON.stringify(msg));
+    api.postMessage(msg);
+    // api.postMessage(JSON.stringify(msg));
 }
 
 var log = function log(...msg) {
@@ -13,11 +17,14 @@ var log = function log(...msg) {
 editor.setSize(null, '100%');
 
 window.addEventListener('message', event => {
-    const message = JSON.parse(event.data);
+    console.log('message', event.data);
+    const message = event.data;
     
     switch (message.type) {
         case 'update':
-            editor.setValue(message.body);
+            if (editor.getValue() != message.body) {
+                editor.setValue(message.body);
+            }
             break;
     }
 
@@ -29,7 +36,26 @@ window.addEventListener('message', event => {
 
 });
 
+
+editor.on("paste", (cm, e) => {
+    e.preventDefault();
+    
+    console.log('paste in editor');
+
+    let types = e.clipboardData.types;
+    let paste = '';
+    if (types.indexOf('text/html') !== -1) {
+        paste = e.clipboardData.getData('text/html');
+        paste = convertHtmlToMarkdown(paste);
+    } else {
+        paste = e.clipboardData.getData("text");
+    }
+    
+    cm.replaceSelection(paste);
+});
+
 editor.on('change', () => {
+    console.log('change');
     const text = editor.getValue();
     
     sendToVsCode({type: 'update', body: text})

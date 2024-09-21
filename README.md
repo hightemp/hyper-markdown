@@ -6,7 +6,7 @@ This simple extension uses the hyper-md editor to display markdown. Its main fea
 ### Features
 
 - [x] markdown preview
-- [ ] сonversion to markdown from HTML pasted from the clipboard
+- [x] сonversion to markdown from HTML pasted from the clipboard
 
 ![](./screenshots/screenshot_01.png)
 
