@@ -6,6 +6,7 @@
   "engines": {
     "vscode": "^1.93.0"
   },
+  "publisher": "hightemp",
   "author": {
     "email": "hightemp.unknown@gmail.com",
     "name": "Anton"
