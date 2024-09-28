@@ -9,6 +9,7 @@ export class HyperMarkdownEditorProviderText implements CustomTextEditorProvider
     private extensionPath: string;
     private context: vscode.ExtensionContext;
     private log: vscode.OutputChannel;
+    private isUpdatingFromWebview = false;
 
     constructor(context: vscode.ExtensionContext, log: vscode.OutputChannel) {
         this.extensionUri = context.extensionUri;
@@ -41,7 +42,8 @@ export class HyperMarkdownEditorProviderText implements CustomTextEditorProvider
         };
 
         const changeDocumentSubscription = vscode.workspace.onDidChangeTextDocument(e => {
-            if (e.document.uri.toString() === document.uri.toString()) {
+            console.log("onDidChangeTextDocument", e)
+            if (e.document.uri.toString() === document.uri.toString() && !this.isUpdatingFromWebview) {
                 updateWebview();
             }
         });
@@ -58,7 +60,9 @@ export class HyperMarkdownEditorProviderText implements CustomTextEditorProvider
             var data: Message = msg as Message
             switch (data.type) {
                 case 'update':
-                    this.updateTextDocument(document, data.body);
+                    this.isUpdatingFromWebview = true;
+                    this.updateTextDocument(document, data.body)
+                        .then(() => { this.isUpdatingFromWebview = false; });
                     return;
                 case 'log':
                     this.log.appendLine(data.body);

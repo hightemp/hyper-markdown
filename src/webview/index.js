@@ -3,6 +3,8 @@ console.log('webview index.js');
 const editorElement = document.getElementById('editor')
 const editor = HyperMD.fromTextArea(editorElement);
 
+let isUpdatingFromVscode = false;
+
 const api = (window.VsCodeApi = acquireVsCodeApi());
 
 function sendToVsCode(msg) {
@@ -22,9 +24,11 @@ window.addEventListener('message', event => {
     
     switch (message.type) {
         case 'update':
-            if (editor.getValue() != message.body) {
-                editor.setValue(message.body);
-            }
+            // if (editor.getValue() != message.body) {
+            isUpdatingFromVscode = true;
+            editor.setValue(message.body);
+            isUpdatingFromVscode = false;
+            // }
             break;
     }
 
@@ -56,9 +60,12 @@ editor.on("paste", (cm, e) => {
 
 editor.on('change', () => {
     console.log('change');
-    const text = editor.getValue();
+
+    if (!isUpdatingFromVscode) {
+        const text = editor.getValue();
     
-    sendToVsCode({type: 'update', body: text})
+        sendToVsCode({type: 'update', body: text})
+    }
 });
 
 window.addEventListener('resize', () => {
