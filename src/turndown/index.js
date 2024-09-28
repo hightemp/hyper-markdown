@@ -28,8 +28,7 @@ window.convertHtmlToMarkdown = function (htmlText) {
 
     turndownService.addRule("taskListItems", {
         filter: function (e) {
-            return e.instanceOf(HTMLInputElement) && "checkbox" === e.type && "LI" === e
-                .parentNode.nodeName
+            return e instanceof HTMLInputElement && e.type === "checkbox" && e.parentNode.nodeName === "LI";
         },
         replacement: function (e, t) {
             return t.checked ? "[x] " : "[ ] "
