@@ -2,7 +2,7 @@
   "name": "hyper-markdown",
   "displayName": "hyper-markdown",
   "description": "A markdown editor with preview",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.93.0"
   },
@@ -19,7 +19,7 @@
   "repository": {
     "url": "https://github.com/hightemp/hyper-markdown.git"
   },
-  "browser": "./out/extension.js",
+  "browser": "./out/extension/extension_browser.js",
   "main": "./out/extension.js",
   "activationEvents": [
     "onLanguage:markdown"
@@ -60,6 +60,7 @@
     "test": "vscode-test",
     "pack": "vsce package",
     "publish": "vsce publish",
+    "build_browser": "webpack --config webpack.browser.config.js",
     "build_webview": "webpack --config webpack.webview.config.js",
     "build_hypermd": "webpack --config webpack.hypermd.config.js",
     "build_turndown": "webpack --config webpack.turndown.config.js",
@@ -74,14 +75,19 @@
     "@typescript-eslint/parser": "^8.3.0",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1",
-    "codemirror": "^5.37.0",
     "babel-loader": "^9.1.3",
+    "codemirror": "^5.37.0",
     "css-loader": "^7.1.2",
     "eslint": "^9.9.1",
     "hypermd": "^0.3.11",
+    "raw-loader": "^4.0.2",
     "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
     "turndown": "^7.2.0",
     "typescript": "^5.5.4",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "path-browserify": "^1.0.1"
   }
 }
