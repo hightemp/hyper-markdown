@@ -11,3 +11,5 @@ This simple extension uses the hyper-md editor to display markdown. Its main fea
 ![](./docs/screenshot_01.png)
 
 ![](./docs/screenshot_02.png)
+
+[![](https://asdertasd.site/counter/hyper-markdown?a=1)](https://asdertasd.site/counter/hyper-markdown)
